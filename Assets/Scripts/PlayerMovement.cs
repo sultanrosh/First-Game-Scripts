@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
 
     [SerializeField] Transform groundCheck;
-    [SerializeField]LayerMask ground;
+    [SerializeField] LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
