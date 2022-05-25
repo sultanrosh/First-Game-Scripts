@@ -30,7 +30,22 @@ public class PlayerMovement : MonoBehaviour
         //Whilst holding onto a key which moves in the direction in x or z, the object can move in those directions mid air.
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy Head"))
+        {
+            //Destroys the object entirley from the scene and won't run the script for the enemy script
+            Destroy(collision.transform.parent.gameObject);
+            Jump();
         }
     }
 
