@@ -11,19 +11,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
+    [SerializeField] AudioSource JumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        //GetComponent calls for what the unity editor calls the player object
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //I set the buttons of these movement patters in project settings
         //Starts variables from project preferences to get input key values (w, a ,s d)
         float horizInput = Input.GetAxis("Horizontal");
         float vertInput = Input.GetAxis("Vertical");
 
+        //First parameter is the x component
+        //Second parameter is y component (uncahnged since this is jump direction)
+        //Third parameter is the z component
         rb.velocity = new Vector3(horizInput * movementSpeed, rb.velocity.y, vertInput * movementSpeed);
 
 
@@ -37,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        JumpSound.Play();
     }
 
     private void OnCollisionEnter(Collision collision)

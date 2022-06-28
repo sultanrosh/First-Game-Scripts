@@ -27,6 +27,7 @@ public class WaypointFollower : MonoBehaviour
         //Second parameter is the waypoint that the platform would like to move towards (index 0 means the first way point)
         //Third Parameter is the speed of how fast the platform moves
         //Time.deltaTime is used as the speed will update every frame per second (meaning the platform moves based off the FPS)
+        //Time.deltaTime is the speed from the last fram to the current frame
         transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, speed * Time.deltaTime);
     }
 }
